@@ -1,0 +1,73 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+PS1='[\[\033[1;31m\]\u\[\033[0m\]@\[\033[0;32m\]\h\[\033[0m\] \W]\$ '
+
+alias ls='ls --color=auto'
+alias ll='ls -lh --color=auto'
+alias la='ls -lah --color=auto'
+alias lv='ls -hrtl --color=auto'
+alias lav='ls -ahrtl --color=auto'
+
+# histsize
+export HISTSIZE=1000000
+export HISTTIMEFORMAT='%B %Y %A %H:%M:%S | '
+export HISTCONTROL=ignoreboth
+shopt -s histappend
+export HISTIGNORE='ls:bg:fg:history'
+export PROMPT_COMMAND='history -a'
+
+export EDITOR=vim
+export PAGER=less
+
+
+# grub-update
+NK() {
+	grub-mkconfig -o /boot/grub/grub.cfg
+#	grub-mkconfig -o /esp/EFI/dynblue/grub.cfg
+	grub-install --target=x86_64-efi --efi-directory=/esp --bootloader-id=archlinux --removable --recheck
+}
+
+# bash completions
+#source /usr/share/git/completion/git-completion.bash
+source /usr/share/bash-completion/completions/journalctl
+source /usr/share/bash-completion/completions/pacman
+source /usr/share/bash-completion/completions/pacman-key
+source /usr/share/bash-completion/completions/systemctl
+#source /usr/share/bash-completion/completions/losetup
+#source /usr/share/bash-completion/completions/btrfs
+#source /usr/share/bash-completion/completions/tmux
+
+#pwd gen
+APG() {
+	apg -a 0 -M SNCL -t -n 15 -m 16 -x 28 -s
+}
+
+APG1() {
+	apg -a 1 -M SNCL -t -n 16 -m 16 -x 28 -s
+}
+
+# grep with color
+#export GREP_OPTIONS='--color=auto'
+alias grep='grep --color=auto'
+
+# tar aliases
+#extract
+alias txz='tar -xvzf'
+alias txj='tar -xvjf'
+alias txJ='tar -xvJf'
+#create
+alias tcz='tar -cvzf'
+alias tcj='tar -cvjf'
+alias tcJ='tar -cvJf'
+alias 7Z='7z a -t7z -mhe=on -mx=9 -m0=lzma2'
+
+# rsync
+RS() {
+	rsync -avP --progress --partial
+}
+

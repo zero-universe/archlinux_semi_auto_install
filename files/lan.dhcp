@@ -1,0 +1,16 @@
+Description='A basic dhcp ethernet connection'
+Interface=<WILL-BE-CHANGED>
+Connection=ethernet
+IP=dhcp
+## for DHCPv6
+IP6=dhcp
+DHCPClient=dhclient
+## for IPv6 autoconfiguration
+#IP6=stateless
+
+## For IPv6 static address configuration
+#IP6=static
+#Address6=('fd54:fc9a:8b7a:765e::41')
+#Routes6=('fd54:fc9a:8b7a:765e::1')
+#Gateway6=('fd54:fc9a:8b7a:765e::1')
+

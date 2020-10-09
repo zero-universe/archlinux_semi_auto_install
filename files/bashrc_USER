@@ -1,0 +1,136 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+PS1='\[\033[1;32m\]\u\[\033[0m\]@\[\033[0;32m\]\h\[\033[0m\] \W]\$ '
+
+## english
+LANG="en_US.UTF-8"
+LC_CTYPE="en_US.UTF-8"
+LC_NUMERIC="en_US.UTF-8"
+LC_TIME="en_US.UTF-8"
+LC_COLLATE="en_US.UTF-8"
+LC_MONETARY="en_US.UTF-8"
+LC_MESSAGES="en_US.UTF-8"
+LC_PAPER="en_US.UTF-8"
+LC_NAME="en_US.UTF-8"
+LC_ADDRESS="en_US.UTF-8"
+LC_TELEPHONE="en_US.UTF-8"
+LC_MEASUREMENT="en_US.UTF-8"
+LC_IDENTIFICATION="en_US.UTF-8"
+LC_ALL="C"
+
+# histsize
+export HISTSIZE=1000000
+export HISTTIMEFORMAT='%B %Y %A %H:%M:%S | '
+export HISTCONTROL=ignoreboth
+shopt -s histappend
+export HISTIGNORE='ls:bg:fg:history'
+export PROMPT_COMMAND='history -a'
+
+alias ls='ls --color=auto'
+alias ll='ls -lh --color=auto'
+alias la='ls -lah --color=auto'
+alias lv='ls -hrtl --color=auto'
+alias lav='ls -ahrtl --color=auto'
+
+setxkbmap de
+export EDITOR=vim
+export PAGER=less
+complete -cf sudo 
+
+soetty() {
+	sudo screen /dev/ttyUSB0 57600 8N1
+}
+
+REFL() {
+
+	sudo bash -c 'reflector -a 12 -c DE -f 15 -p https > /etc/pacman.d/mirrorlist'
+}
+
+#updates
+UPPY() {
+	sudo pacman -Syu --noconfirm
+	sudo pacman -Sc --noconfirm
+	sudo systemctl daemon-reload
+}
+
+GADD() {
+	gpg --recv-keys $1
+	gpg --edit-key $1 trust quit
+}
+
+# grub-update
+NK() {
+	sudo grub-mkconfig -o /boot/grub/grub.cfg
+#	sudo grub-mkconfig -o /esp/EFI/archlinux/grub.cfg
+	sudo grub-install --target=x86_64-efi --efi-directory=/esp --bootloader-id=archlinux --recheck
+}
+
+# bash completions
+#source /usr/share/git/completion/git-completion.bash
+source /usr/share/bash-completion/completions/journalctl
+source /usr/share/bash-completion/completions/pacman
+source /usr/share/bash-completion/completions/pacman-key
+source /usr/share/bash-completion/completions/systemctl
+source /usr/share/bash-completion/completions/losetup
+#source /usr/share/bash-completion/completions/btrfs
+#source /usr/share/bash-completion/completions/tmux
+
+#pwd gen
+APG() {
+	apg -a 0 -M SNCL -t -n 15 -m 16 -x 28 -s
+}
+
+APG1() {
+	apg -a 1 -M SNCL -t -n 16 -m 16 -x 28 -s
+}
+
+# grep with color
+#export GREP_OPTIONS='--color=auto'
+alias grep='grep --color=auto'
+
+# tar aliases
+#extract
+alias txz='tar -xvzf'
+alias txj='tar -xvjf'
+alias txJ='tar -xvJf'
+
+#create
+alias tcz='tar -cvzf'
+alias tcj='tar -cvjf'
+alias tcJ='tar -cvJf'
+alias 7Z='7z a -t7z -mhe=on -mx=9 -m0=lzma2'
+
+# clear and kill keychain
+KK() {
+	keychain --clear
+	keychain -k all
+}
+
+BK() {
+	time makepkg -cfi
+}
+
+INS() {
+	sudo pacman -U *.pkg.tar.xz
+}
+
+# weather
+OB() {
+	curl -s 'https://wttr.in/Oberreifenberg, Germany'
+}
+
+#with gpg 
+#	eval $(keychain --eval --confirm --agents ssh,gpg -Q --quiet id_ed25.69 id_ecdsa id_dsa 1E662764 ACDBF3B5 BE727FFF E029723D 4F426E91 FDBF6D1D)
+
+#without gpg
+#eval $(keychain --eval --confirm --agents ssh -Q --quiet id_ecdsa id_dsa id_ecdsa.idms id_dsa.idms)
+#eval $(keychain --eval --confirm --nogui --agents ssh -Q id_ed25.69 id_ecdsa id_dsa)
+eval $(keychain --eval --confirm -Q --confhost --nogui --agents ssh id_ecdsa-sk id_ed25519 id_ecdsa)
+###eval $(keychain --eval -Q --confhost --nogui --agents ssh id_ecdsa-sk id_ed25519 id_ecdsa)
+#eval $(keychain --eval --confirm -Q --agents ssh id_ed25.69 id_ecdsa id_dsa.idms id_ecdsa.idms)
+
