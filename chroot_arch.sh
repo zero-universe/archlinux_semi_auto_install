@@ -11,11 +11,13 @@ set -o errexit
 # source general settings and host.conf
 source_configs(){
   source host.conf
+  source libs/general.conf
   source libs/chroot.conf
 }
 
 
 # run chroot functions 
+set_proxy
 install_grub
 copy_etc_files
 set_ethernet_netctl

@@ -20,6 +20,7 @@ source_configs(){
 
 # run all functions 
 load_keys
+set_proxy
 prep_iso_for_setup
 hdd_table
 create_pv_vg
