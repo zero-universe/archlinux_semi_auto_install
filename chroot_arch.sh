@@ -16,7 +16,7 @@ source_configs(){
 }
 
 
-# run chroot functions 
+# run chroot functions
 source_configs
 set_proxy
 install_grub
@@ -24,4 +24,4 @@ copy_etc_files
 set_ethernet_netctl
 create_user_dirs_and_pwds
 copy_configs
-
+prep_and_enable_service
