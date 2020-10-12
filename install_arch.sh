@@ -18,6 +18,7 @@ hdd_table
 create_pv_vg
 set_fs_boot
 set_fs_root_os
+create_lvs
 create_and_mount_lv
 install_pkgs
 set_etc_configs
