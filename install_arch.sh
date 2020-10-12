@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Version: 2020.10.08
+# Version: 2020.10.12
 
 set -o nounset
 set -o errexit
@@ -8,17 +8,9 @@ set -o errexit
 #set -o noglob
 
 
-source_configs(){
-# source general settings and host.conf
-  source host.conf
-  source libs/general.conf
-  source libs/partitioning.conf
-  source libs/pkgs.conf
-  source libs/installed_os_setup.conf
-}
-
 
 # run all functions 
+source_configs
 load_keys
 set_proxy
 prep_iso_for_setup
