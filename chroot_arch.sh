@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Version: 2020.10.10
+# Version: 2020.10.12
 
 set -o nounset
 set -o errexit
@@ -17,6 +17,7 @@ source_configs(){
 
 
 # run chroot functions 
+source_configs
 set_proxy
 install_grub
 copy_etc_files

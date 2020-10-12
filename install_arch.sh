@@ -8,6 +8,15 @@ set -o errexit
 #set -o noglob
 
 
+source_configs(){                      
+# source general settings and host.conf
+  source host.conf                     
+  source libs/general.conf             
+  source libs/partitioning.conf        
+  source libs/pkgs.conf                
+  source libs/installed_os_setup.conf  
+}
+
 
 # run all functions 
 source_configs
