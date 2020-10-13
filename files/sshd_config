@@ -46,7 +46,7 @@ PubkeyAuthOptions touch-required
 AuthorizedKeysFile	/etc/ssh/keys.%u
 
 # allowed users
-AllowUsers root apovis
+AllowUsers root <USERNAME>
 
 #AuthorizedPrincipalsFile none
 
