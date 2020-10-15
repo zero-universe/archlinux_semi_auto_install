@@ -11,3 +11,6 @@ host.conf
 and run in the same directory:
 ./install_arch.sh
 
+in chroot:
+cd /root/archlinux_semi_auto_install
+./chroot_arch.sh
