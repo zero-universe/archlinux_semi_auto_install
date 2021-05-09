@@ -33,14 +33,10 @@ NK() {
 }
 
 # bash completions
-#source /usr/share/git/completion/git-completion.bash
 source /usr/share/bash-completion/completions/journalctl
 source /usr/share/bash-completion/completions/pacman
 source /usr/share/bash-completion/completions/pacman-key
 source /usr/share/bash-completion/completions/systemctl
-#source /usr/share/bash-completion/completions/losetup
-#source /usr/share/bash-completion/completions/btrfs
-#source /usr/share/bash-completion/completions/tmux
 
 #pwd gen
 APG() {
@@ -69,5 +65,13 @@ alias 7Z='7z a -t7z -mhe=on -mx=9 -m0=lzma2'
 # rsync
 RS() {
 	rsync -avP --progress --partial
+}
+
+TN() {
+      tmux new -s la
+}
+
+AT() {
+      tmux a
 }
 

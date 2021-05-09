@@ -40,7 +40,7 @@ alias lav='ls -ahrtl --color=auto'
 setxkbmap de
 export EDITOR=vim
 export PAGER=less
-complete -cf sudo 
+complete -cf sudo
 
 soetty() {
 	sudo screen /dev/ttyUSB0 57600 8N1
@@ -119,12 +119,20 @@ INS() {
 	sudo pacman -U *.pkg.tar.xz
 }
 
+TN() {
+      tmux new -s la
+}
+
+AT() {
+      tmux a
+}
+
 # weather
 OB() {
 	curl -s 'https://wttr.in/Oberreifenberg, Germany'
 }
 
-#with gpg 
+#with gpg
 #	eval $(keychain --eval --confirm --agents ssh,gpg -Q --quiet id_ed25.69 id_ecdsa id_dsa 1E662764 ACDBF3B5 BE727FFF E029723D 4F426E91 FDBF6D1D)
 
 #without gpg
